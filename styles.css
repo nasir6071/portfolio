@@ -1,0 +1,781 @@
+:root {
+  --header-h: 72px;
+  --bg: #0b1220;
+  --panel: #101827;
+  --muted: #94a3b8;
+  --text: #e5e7eb;
+  --brand: #3b82f6;
+  --brand2: #7c3aed;
+  --card: #111827;
+  --line: #233048;
+}
+
+:root.light {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --muted: #475569;
+  --text: #0f172a;
+  --brand: #2563eb;
+  --brand2: #6d28d9;
+  --card: #ffffff;
+  --line: #cbd5e1;
+}
+
+/* Base / layout */
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  height: 100%
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Segoe UI, Roboto, Arial;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding-top: var(--header-h);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 160;
+  /* above drawer & backdrop */
+  background: rgba(2, 6, 23, .7);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h)
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 800
+}
+
+.brand-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--brand);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, .35)
+}
+
+.primary-nav a {
+  margin-left: 18px;
+  color: var(--text);
+  font-weight: 600;
+  opacity: .9;
+  text-decoration: none
+}
+
+.primary-nav a.active {
+  color: var(--brand)
+}
+
+.theme-toggle {
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 18px
+}
+
+/* Light header */
+:root.light header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, .06);
+  backdrop-filter: none
+}
+
+:root.light .primary-nav a {
+  color: #0f172a;
+  opacity: .9
+}
+
+:root.light .primary-nav a.active {
+  color: var(--brand)
+}
+
+:root.light .theme-toggle {
+  color: #0f172a
+}
+
+:root.light .brand-avatar {
+  border-color: var(--brand);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, .18)
+}
+
+/* Hero / cards */
+.hero {
+  padding: 28px 0
+}
+
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 28px
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px
+}
+
+h1 {
+  font-size: clamp(32px, 3.4vw, 48px);
+  margin: .4rem 0
+}
+
+.subtitle {
+  margin-top: -4px;
+  color: var(--brand);
+  font-weight: 700
+}
+
+h2 {
+  font-size: clamp(24px, 2.5vw, 36px);
+  margin: 0 0 14px
+}
+
+h3 {
+  margin: 0 0 10px
+}
+
+.chip {
+  display: inline-block;
+  padding: .25rem .6rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  font-weight: 600
+}
+
+.hero-portrait {
+  width: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  border: 4px solid var(--brand)
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 1px solid var(--brand);
+  background: rgba(59, 130, 246, .12);
+  color: var(--text);
+  font-weight: 600
+}
+
+.btn.ghost {
+  background: transparent
+}
+
+.section {
+  padding: 28px 0
+}
+
+.section>h2 {
+  border-left: 6px solid var(--brand);
+  padding-left: 10px
+}
+
+/* Timeline */
+.list {
+  display: grid;
+  gap: 12px
+}
+
+.timeline {
+  position: relative;
+  padding-left: 42px
+}
+
+.timeline:before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--line)
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--panel)
+}
+
+.item .time {
+  color: var(--brand);
+  font-weight: 700;
+  white-space: nowrap;
+  padding-left: 4px
+}
+
+/* remove the dot that caused overlap */
+.item:before {
+  display: none !important
+}
+
+/* Tags / skills */
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap
+}
+
+.tag {
+  padding: .25rem .5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-weight: 600
+}
+
+.skillgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px
+}
+
+.skillcard {
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--panel)
+}
+
+.skillcard h3 {
+  margin: 0 0 12px
+}
+
+/* Projects / publications */
+.projectgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px
+}
+
+.projectcard {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden
+}
+
+.projectcard img {
+  width: 100%;
+  display: block
+}
+
+.projectcard .body {
+  padding: 16px
+}
+
+.pubgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px
+}
+
+.pub {
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--panel)
+}
+
+.badge {
+  font-weight: 700;
+  font-size: 12px;
+  padding: .2rem .5rem;
+  border-radius: 999px;
+  border: 1px solid var(--line)
+}
+
+.badge.success {
+  color: #16a34a
+}
+
+.badge.warning {
+  color: #d97706
+}
+
+/* Footer & utilities */
+.footer {
+  padding: 28px 0 56px;
+  color: var(--muted);
+  border-top: 1px dashed var(--line)
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--header-h) + 12px)
+}
+
+.social {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 10px 0
+}
+
+.social a {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text)
+}
+
+svg.icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor
+}
+
+/* =========================
+   Mobile nav — RIGHT DRAWER
+   ========================= */
+
+/* Toggle button (phones) */
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 22px;
+  line-height: 1;
+  padding: 8px 6px;
+  cursor: pointer;
+}
+
+/* Drawer: full-height below header, scrollable */
+.mobile-menu {
+  display: none !important;
+  position: fixed;
+  right: 0;
+  top: var(--header-h);
+
+  /* Full viewport height under header */
+  height: calc(100dvh - var(--header-h));
+  bottom: auto;
+
+  width: clamp(280px, 92vw, 420px);
+  transform: translateX(100%);
+  transition: transform .28s ease;
+  z-index: 150;
+  /* above backdrop, below header */
+  background: var(--panel);
+  border-left: 1px solid var(--line);
+  padding: 16px;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  box-shadow: -12px 0 28px rgba(0, 0, 0, .35);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@supports not (height: 100dvh) {
+  .mobile-menu {
+    height: calc(100vh - var(--header-h));
+  }
+}
+
+.mobile-menu a,
+.mobile-menu .theme-toggle.small {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 12px;
+  white-space: nowrap;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  opacity: .95;
+  background: transparent;
+  border: 1px solid var(--line);
+}
+
+.mobile-menu a.active {
+  color: var(--brand)
+}
+
+/* Light colors for drawer */
+:root.light .mobile-menu {
+  background: #ffffff;
+  border-left: 1px solid #e5e7eb;
+  box-shadow: -12px 0 28px rgba(15, 23, 42, .08);
+}
+
+:root.light .mobile-menu a,
+:root.light .mobile-menu .theme-toggle.small {
+  color: #0f172a
+}
+
+/* When open: backdrop + lock scroll */
+body.menu-open {
+  overflow: hidden
+}
+
+@media (max-width:820px) {
+  body.menu-open::before {
+    content: "";
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    background: rgba(0, 0, 0, .45);
+    backdrop-filter: saturate(120%) blur(2px);
+    z-index: 140;
+    /* below drawer */
+  }
+
+  /* Hide desktop nav, show toggle on phones */
+  .primary-nav {
+    display: none !important
+  }
+
+  .menu-toggle {
+    display: inline-block
+  }
+}
+
+/* Reveal the drawer */
+body.menu-open #mobileMenu {
+  display: flex !important;
+  transform: translateX(0);
+}
+
+/* Responsive content */
+@media(max-width:820px) {
+  .hero .wrap {
+    grid-template-columns: 1fr
+  }
+
+  .item {
+    grid-template-columns: 1fr
+  }
+
+  .projectgrid,
+  .pubgrid,
+  .skillgrid {
+    grid-template-columns: 1fr
+  }
+}
+
+@media(max-width:480px) {
+  .container {
+    padding: 0 14px
+  }
+
+  h1 {
+    font-size: 30px
+  }
+
+  .subtitle {
+    font-size: 14px
+  }
+}
+
+/* ===== CONTACT layout ===== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.contact-info {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.contact-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 10px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  margin-bottom: 10px;
+}
+
+.ci-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--brand), var(--brand2));
+  box-shadow: 0 6px 18px rgba(59, 130, 246, .25);
+}
+
+.ci-link {
+  color: var(--text);
+  text-decoration: none
+}
+
+.ci-link:hover {
+  color: var(--brand)
+}
+
+.contact-cta {
+  margin-top: 6px
+}
+
+/* Form */
+.contact-form .form-row {
+  margin-bottom: 12px
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, .18)
+}
+
+.contact-form button {
+  margin-top: 6px
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* CONTACT layout (compact cards) */
+.contact-item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  /* narrower icon column */
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  /* smaller padding */
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  margin-bottom: 10px;
+}
+
+.ci-icon {
+  width: 40px;
+  /* smaller icon circle */
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--brand), var(--brand2));
+  box-shadow: 0 6px 14px rgba(59, 130, 246, .20);
+}
+
+
+/* --- Mobile drawer bottom-gap fix --- */
+#mobileMenu {
+  /* keep normal side padding, reduce bottom padding */
+  padding-bottom: 8px !important;
+}
+
+#mobileMenu > * {
+  margin-bottom: 0 !important;   /* kill any default margin */
+}
+
+/* If your links are inside a list/container, tighten vertical rhythm */
+#mobileMenu .menu-list,
+#mobileMenu .drawer-list,
+#mobileMenu nav,
+#mobileMenu .list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;                      /* consistent spacing between items */
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Last actionable item (theme button) must not add extra space */
+#mobileMenu .menu-list > *:last-child,
+#mobileMenu .drawer-list > *:last-child,
+#mobileMenu .list > *:last-child,
+#mobileMenu button#themeBtnMobile:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Some templates add an invisible spacer at the end; hide it if present */
+#mobileMenu .spacer,
+#mobileMenu .end-pad,
+#mobileMenu .footer-pad {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Make sure the sheet itself doesn't force extra space below content */
+#mobileMenu,
+#mobileMenu .sheet,
+#mobileMenu .panel,
+#mobileMenu .drawer {
+  height: auto;                               /* grow to content */
+  max-height: calc(100dvh - var(--header-h)); /* scroll if too tall */
+  overflow: auto;
+}
+
+/* iOS safe-area: keep tiny but not big padding on devices with home bar */
+@supports (padding: max(0px)) {
+  #mobileMenu {
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+}
+
+
+/* === Drawer size + compact items + no bottom tail (overrides) === */
+
+/* Standardize drawer width & internal spacing */
+#mobileMenu {
+  width: min(200px, 86vw) !important;            /* standard sheet width */
+  padding: 14px 14px 8px !important;             /* smaller bottom pad */
+  gap: 10px !important;
+  max-height: calc(100dvh - var(--header-h)) !important;
+  overflow-y: auto !important;
+}
+
+/* Compact row height & typography for each item */
+#mobileMenu a,
+#mobileMenu .theme-toggle.small,
+#mobileMenu button,
+#mobileMenu .menu-toggle {
+  display: flex !important;
+  align-items: center !important;
+  height: 48px !important;                       /* clean, touch-friendly */
+  padding: 0 14px !important;
+  font-size: 16px !important;
+  border-radius: 12px !important;
+}
+
+/* Tight vertical rhythm for the list */
+#mobileMenu .menu-list,
+#mobileMenu .drawer-list,
+#mobileMenu nav,
+#mobileMenu .list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Trim any bottom margin from the last actionable element */
+#mobileMenu > *:last-child,
+#mobileMenu .menu-list > *:last-child,
+#mobileMenu .drawer-list > *:last-child,
+#mobileMenu .list > *:last-child,
+#mobileMenu #themeBtnMobile:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* If there is a footer row for the theme toggle, keep it slim */
+#mobileMenu .drawer-footer,
+#mobileMenu .footer,
+#mobileMenu .theme-row {
+  margin: 8px 0 0 !important;
+  padding: 8px 0 0 !important;
+  border-top: 1px solid var(--line) !important;
+}
+
+/* Kill any “spacer” elements that add extra tail */
+#mobileMenu .spacer,
+#mobileMenu .end-pad,
+#mobileMenu .footer-pad {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Truly hide the drawer when closed */
+#mobileMenu[hidden] { display: none !important; }
+
+/* iOS safe-area: keep small, not big */
+@supports (padding: max(0px)) {
+  #mobileMenu { padding-bottom: max(8px, env(safe-area-inset-bottom)) !important; }
+}
+
+/* Slightly denser on very small phones */
+@media (max-width: 380px) {
+  #mobileMenu { width: 92vw !important; }
+  #mobileMenu a,
+  #mobileMenu .theme-toggle.small { height: 44px !important; font-size: 15px !important; }
+}
